@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import announcementRoutes from "./routes/announcement.routes";
 import quizRoutes from "./routes/quiz.routes";
+import { errorHandler } from "./middlewares/errorHandler";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use("/api/quizzes", quizRoutes);
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
+app.use(errorHandler);
 
 // DB connect + start server
 mongoose
