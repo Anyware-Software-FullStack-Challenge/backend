@@ -7,8 +7,8 @@ export const getAllAnnouncements = async (_req: Request, res: Response) => {
 };
 
 export const createAnnouncement = async (req: Request, res: Response) => {
-  const { title, content } = req.body;
-  const newAnnouncement = new Announcement({ title, content });
+  const { title, content, author, role } = req.body;
+  const newAnnouncement = new Announcement({ title, content, author, role });
   await newAnnouncement.save();
   res.status(201).json(newAnnouncement);
 };
