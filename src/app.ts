@@ -6,6 +6,7 @@ import announcementRoutes from "./routes/announcement.routes";
 import quizRoutes from "./routes/quiz.routes";
 import { errorHandler } from "./middlewares/errorHandler";
 import authRoutes from "./routes/auth.routes";
+import { seedDatabase } from "./utils/seed";
 
 dotenv.config();
 
@@ -24,11 +25,14 @@ app.get("/", (req, res) => {
 app.use(errorHandler);
 
 // DB connect + start server
+
 mongoose
   .connect(process.env.MONGO_URI as string)
-  .then(() => {
+  .then(async () => {
+    console.log(" MongoDB connected");
+    await seedDatabase(); // 🟢 Seed
     app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+      console.log(`🚀 Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
