@@ -2,6 +2,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import announcementRoutes from "./routes/announcement.routes";
 
 dotenv.config();
 
@@ -10,7 +11,8 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// Sample route
+app.use("/api/announcements", announcementRoutes);
+
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
