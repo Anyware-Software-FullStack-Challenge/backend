@@ -2,6 +2,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import announcementRoutes from "./routes/announcement.routes";
 import quizRoutes from "./routes/quiz.routes";
 import { errorHandler } from "./middlewares/errorHandler";
@@ -12,6 +13,16 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// CORS configuration
+app.use(
+  cors({
+    origin: ["http://localhost:5173", "http://localhost:3000"], // Allow frontend domains
+    credentials: true, // Allow cookies and authorization headers
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(express.json());
 app.use("/api/auth", authRoutes);
