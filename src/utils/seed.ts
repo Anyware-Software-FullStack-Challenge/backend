@@ -38,7 +38,7 @@ export const seedDatabase = async () => {
         role: "events",
       },
     ]);
-    console.log("✅ Seeded announcements");
+    console.log(" Seeded announcements");
   }
 
   if (quizzesCount === 0) {
@@ -84,6 +84,6 @@ export const seedDatabase = async () => {
         dueDate: new Date("2025-12-29T11:00:00Z"),
       },
     ]);
-    console.log("✅ Seeded quizzes");
+    console.log(" Seeded quizzes");
   }
 };
